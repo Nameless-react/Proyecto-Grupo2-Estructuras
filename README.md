@@ -1,4 +1,4 @@
-# Proyecto-Grupo2-Estructuras
+# Proyecto grupo 2
 Proyecto del curso SC-304 Estructura de datos<br>
 
 

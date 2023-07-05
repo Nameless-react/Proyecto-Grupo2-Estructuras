@@ -1,20 +1,19 @@
 
 package proyecto;
 
-public class Usuario {
+public class Usuario extends Persona {
     private String username;
     private String password;
     private boolean state;
     
     
 
-    public Usuario(String username, String password, boolean state) {
-        this.username = username;
+    public Usuario(String name, String firstSurName, String secondSurName, long identification, String username, String password, boolean state) {
+        super(name, firstSurName, secondSurName, identification);
         this.password = password;
         this.state = state;
     }
     
-    public Usuario(){}
     
     public String getUsername() {
         return username;
@@ -39,7 +38,5 @@ public class Usuario {
     public void setState(boolean state) {
         this.state = state;
     }
-    
-    
-           
+             
 }

@@ -3,94 +3,25 @@ package proyecto;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import proyecto.Estructuras.NodoLCS;
+import proyecto.Estructuras.ListaSimple;
 
 
 public class RegistroUsuarios extends javax.swing.JFrame {
-    private NodoLCS pointer;
-    private NodoLCS last;
+   public static ListaSimple listaSimple = new ListaSimple();
+    
     public RegistroUsuarios() {
         initComponents();
-        setTitle("Formulario");
+        setTitle("Formulario Usuarios");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        this.pointer= null;
-        this.last = null;
     }
-    public boolean esVacia(){
-        return pointer == null;
-    }
- 
-    public void push(){
-        Usuario u = new Usuario();
-        u.setUsername(jTextField1.getText());
-        u.setPassword(jTextField2.getText());
-        if(jTextField3.getText()=="activo"){
-            u.setState(true);
-        }else{
-            u.setState(false);
-        }
-        
-        
-        NodoLCS lsc = new NodoLCS();
-        lsc.setData(u);
-        
-        if(esVacia()){
-            pointer = lsc;
-            last = lsc;
-            lsc.setNext(pointer);
-        }else{
-            lsc.setNext(pointer);
-            last.setNext(lsc);
-            last = lsc;
-            
-        }
-        
-    }
-    public void clear(){
+   
+    public void clear() {
         jTextField1.setText("");
         jTextField2.setText("");
-        jTextField3.setText("");
+        jCheckBox1.setSelected(false);
     }
-    
-    @Override
-    public String toString(){
-        String s = "";
-        NodoLCS aux = pointer;
-        if(aux!=null){
-            s+= aux+", ";
-            aux = aux.getNext();
-            while(aux!=pointer){
-                s+= aux.getData().getUsername()+" "+aux.getData().getPassword()+" "+aux.getData().getState()+", ";
-                aux = aux.getNext();
-            }
-        }else{
-            s+= "vacia";
-        }
-        return s;
-    }
-    public void toggleEmployeeState(){
-       
-        if(esVacia()){
-            JOptionPane.showMessageDialog(null, "La lista esta vacia.");
-            
-        }else{
-            NodoLCS aux = pointer;
-            do{
-                String user = JOptionPane.showInputDialog(null,"Digite el usuario que desea desactivar o activar:");
-                
-                if(aux.getData().getUsername()==user){
-                    aux.getData().setState(!aux.getData().getState());
-                    JOptionPane.showMessageDialog(null,"Se cambio el estado del usuario correctamente");
-                
-                }
-                aux = aux.getNext();
-            }while(aux !=pointer);
-            JOptionPane.showMessageDialog(null,"No se encontro el usuario.");
-            
-        }
-    }
-
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -98,12 +29,19 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,11 +53,13 @@ public class RegistroUsuarios extends javax.swing.JFrame {
 
         jLabel3.setText("Contraseña:");
 
-        jLabel4.setText("Estado:");
+        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
+
+        jTextField2.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
 
         jButton1.setBackground(new java.awt.Color(102, 255, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +69,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(102, 255, 255));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Mostrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,75 +77,130 @@ public class RegistroUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox1.setText("Activo");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        jTextField3.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
+
+        jTextField4.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 1));
+
+        jTextField5.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
+
+        jLabel4.setText("Nombre:");
+
+        jLabel5.setText("Primer Apellido:");
+
+        jLabel6.setText("Segundo Apellido:");
+
+        jTextField6.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
+
+        jLabel7.setText("Identificación:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)))))
-                .addContainerGap(156, Short.MAX_VALUE))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(jTextField3))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(jTextField4))
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                            .addComponent(jTextField6))
+                        .addGap(115, 115, 115))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(464, 464, 464))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(317, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(316, 316, 316)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(335, 335, 335))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(53, 53, 53))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel7)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)))
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                .addGap(83, 83, 83))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        push();
-        clear();
+        String name = jTextField3.getText();
+        String firstSurName = jTextField4.getText();
+        String secondSurName = jTextField5.getText();
+        String username = jTextField1.getText();
+        String password = jTextField2.getText();
+        boolean state = jCheckBox1.isSelected();
+        long identification = Long.parseLong(jTextField6.getText());
+        listaSimple.push(new Usuario(name, firstSurName, secondSurName, identification, username, password, state));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JOptionPane.showMessageDialog(null, toString());
+        JOptionPane.showMessageDialog(null, listaSimple);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -242,12 +237,19 @@ public class RegistroUsuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

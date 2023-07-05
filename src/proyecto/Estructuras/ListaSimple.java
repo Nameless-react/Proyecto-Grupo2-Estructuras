@@ -72,6 +72,23 @@ public class ListaSimple {
         Handler.showMessage("El usuario no existe", "Error: no encontrado", Handler.ERROR);
     }
     
+    public void toggleState(long id) {
+        NodoLCS current = this.pointer;
+        
+        
+        while (current != this.last) {
+            Usuario user = current.getData();
+            if (id == user.getIdentification()) {
+                user.setState(!user.getState());
+                Handler.showMessage("El usuario ha sido " + (user.getState() ? "activado" : "desactivado"), "Usuario: " + user.getIdentification(), Handler.INFORMATION);
+                return;
+            }
+            
+            current = current.getNext();
+        }
+        
+        Handler.showMessage("El usuario no existe", "Error: no encontrado", Handler.ERROR);
+    }
     
     @Override
     public String toString() {

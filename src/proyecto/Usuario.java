@@ -12,6 +12,7 @@ public class Usuario extends Persona {
         super(name, firstSurName, secondSurName, identification);
         this.password = password;
         this.state = state;
+        this.username = username;
     }
     
     
@@ -38,5 +39,9 @@ public class Usuario extends Persona {
     public void setState(boolean state) {
         this.state = state;
     }
-             
+    
+    @Override
+    public String toString() {
+        return super.getName() + " " + super.getFirstSurName() + " " + super.getSecondSurName();
+    }
 }

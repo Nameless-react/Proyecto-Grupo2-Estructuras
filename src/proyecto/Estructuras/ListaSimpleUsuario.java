@@ -11,19 +11,18 @@ import proyecto.Usuario;
  *
  * @author joel
  */
-public class ListaSimple {
+public class ListaSimpleUsuario {
     public NodoLCS pointer;
-    public NodoLCS last;
     public int size;
     
-    public ListaSimple() {
-        this.pointer = null;
+    public ListaSimpleUsuario() {
+        this.pointer = new NodoLCS();
+        this.pointer.setNext(this.pointer);
         this.size = 0;
-        this.last = null;
     }
     
     public boolean isEmpty(){
-        return pointer == null;
+        return this.pointer == null;
     }
     
     public int size() {
@@ -32,23 +31,32 @@ public class ListaSimple {
     
     public void push(Usuario user){
         NodoLCS newNode = new NodoLCS(user);
-        this.size++;
+        NodoLCS current = this.pointer;
         
-        if (this.isEmpty()){
-            this.pointer = newNode;
-            this.last = newNode;
+        if (this.size == 0){
+            this.pointer.setData(user);
+            Handler.showMessage("El usuario fue creado exitosamente", "Usuario creado", Handler.INFORMATION);   
+            this.size++;
             return;
         }
+        
+        while (current.getNext() != this.pointer) {
+            current = current.getNext();
+        }
+        
+        current.setNext(newNode);
         newNode.setNext(this.pointer);
-        this.last.setNext(newNode);
-        Handler.showMessage("El usuario fue creaodo exitosamente", "Usuario creado", Handler.INFORMATION);   
+        this.size++;
+        
+        Handler.showMessage("El usuario fue creado exitosamente", "Usuario creado", Handler.INFORMATION);   
     }
 
+    
     public Usuario find(long id) {
         NodoLCS current = this.pointer;
         Usuario user = null;
         
-        while(current != this.last) {
+        while(current.getNext() != this.pointer) {
             if (id == current.getData().getIdentification()) user = current.getData();
             current = current.getNext();
         }
@@ -60,7 +68,7 @@ public class ListaSimple {
         NodoLCS current = this.pointer;
         
         
-        while (current != this.last) {
+        while (current.getNext() != this.pointer) {
             if (user.getIdentification() == current.getData().getIdentification()) {
                 current.setData(user);
                 Handler.showMessage("Usuario actualizado correctamente", "Actualizado", Handler.INFORMATION);
@@ -76,7 +84,7 @@ public class ListaSimple {
         NodoLCS current = this.pointer;
         
         
-        while (current != this.last) {
+        while (current != this.pointer) {
             Usuario user = current.getData();
             if (id == user.getIdentification()) {
                 user.setState(!user.getState());
@@ -92,11 +100,12 @@ public class ListaSimple {
     
     @Override
     public String toString() {
-        if (this.pointer == null) return "[]";
+        NodoLCS current = this.pointer;
+        if (current == null) return "[]";
 
-        String data = "[" + String.valueOf(this.pointer.getData());
-        NodoLCS current = this.pointer.getNext();
-
+        String data = "[" + String.valueOf(current.getData());
+        current = current.getNext();
+        
         while (current != this.pointer) {
             data += ", " + String.valueOf(current.getData());
             current = current.getNext();

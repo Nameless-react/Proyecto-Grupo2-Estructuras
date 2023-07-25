@@ -6,7 +6,7 @@ package proyecto;
 
 /**
  *
- * @author joel
+ * @author mau
  */
 public class Cliente {
     

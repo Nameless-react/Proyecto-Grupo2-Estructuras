@@ -3,15 +3,15 @@ package proyecto.Estructuras;
 
 import proyecto.Usuario;
 
-public class NodoLCS {
+public class NodoLSUsuarios {
     private Usuario data;
-    private NodoLCS next;
+    private NodoLSUsuarios next;
     
-    public NodoLCS(Usuario user) {
+    public NodoLSUsuarios(Usuario user) {
         this.data = user;
     }
 
-    public NodoLCS() {}
+    public NodoLSUsuarios() {}
     
     public Usuario getData() {
         return data;
@@ -21,11 +21,11 @@ public class NodoLCS {
         this.data = data;
     }
 
-    public NodoLCS getNext() {
+    public NodoLSUsuarios getNext() {
         return next;
     }
 
-    public void setNext(NodoLCS next) {
+    public void setNext(NodoLSUsuarios next) {
         this.next = next;
     }
 }

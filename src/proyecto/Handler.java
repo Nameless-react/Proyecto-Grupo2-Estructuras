@@ -40,6 +40,10 @@ public class Handler {
         return Long.parseLong(JOptionPane.showInputDialog(null, message));
     }
     
+    public static char inputChar(String message) {
+        return JOptionPane.showInputDialog(null, message).toLowerCase().charAt(0);
+    }
+    
     public static String capitalize(String text) {
         return text.substring(0,1).toUpperCase() + text.substring(1, text.length());
     }

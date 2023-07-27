@@ -12,11 +12,11 @@ import proyecto.Usuario;
  * @author joel
  */
 public class ListaSimpleUsuario {
-    public NodoLCS pointer;
+    public NodoLSUsuarios pointer;
     public int size;
     
     public ListaSimpleUsuario() {
-        this.pointer = new NodoLCS();
+        this.pointer = new NodoLSUsuarios();
         this.pointer.setNext(this.pointer);
         this.size = 0;
     }
@@ -30,8 +30,8 @@ public class ListaSimpleUsuario {
     }
     
     public void push(Usuario user){
-        NodoLCS newNode = new NodoLCS(user);
-        NodoLCS current = this.pointer;
+        NodoLSUsuarios newNode = new NodoLSUsuarios(user);
+        NodoLSUsuarios current = this.pointer;
         
         if (this.size == 0){
             this.pointer.setData(user);
@@ -53,22 +53,30 @@ public class ListaSimpleUsuario {
 
     
     public Usuario find(long id) {
-        NodoLCS current = this.pointer;
+        NodoLSUsuarios current = this.pointer;
         Usuario user = null;
+        if (this.pointer.getData().getIdentification() == id) return this.pointer.getData();
+        current = current.getNext();
         
-        while(current.getNext() != this.pointer) {
-            if (id == current.getData().getIdentification()) user = current.getData();
+        while(current != this.pointer) {
+            if (id == current.getData().getIdentification()) return current.getData();
             current = current.getNext();
         }
         
-        return user;
+        return null;
     }
     
     public void update(Usuario user) {
-        NodoLCS current = this.pointer;
+        NodoLSUsuarios current = this.pointer;
         
+        if (user.getIdentification() == current.getData().getIdentification()) {
+            current.setData(user);
+            Handler.showMessage("Usuario actualizado correctamente", "Actualizado", Handler.INFORMATION);
+            return;
+        } 
         
-        while (current.getNext() != this.pointer) {
+        current = current.getNext();
+        while (current != this.pointer) {
             if (user.getIdentification() == current.getData().getIdentification()) {
                 current.setData(user);
                 Handler.showMessage("Usuario actualizado correctamente", "Actualizado", Handler.INFORMATION);
@@ -81,8 +89,16 @@ public class ListaSimpleUsuario {
     }
     
     public void toggleState(long id) {
-        NodoLCS current = this.pointer;
+        NodoLSUsuarios current = this.pointer;
         
+        //Verificar que no tenga relación con otros catálogos
+        if (id == current.getData().getIdentification()) {
+            current.getData().setState(!current.getData().getState());
+            Handler.showMessage("El usuario ha sido " + (current.getData().getState() ? "activado" : "desactivado"), "Usuario: " + current.getData().getIdentification(), Handler.INFORMATION);
+            return;
+        }
+        
+        current = current.getNext();
         
         while (current != this.pointer) {
             Usuario user = current.getData();
@@ -100,7 +116,7 @@ public class ListaSimpleUsuario {
     
     @Override
     public String toString() {
-        NodoLCS current = this.pointer;
+        NodoLSUsuarios current = this.pointer;
         if (current == null) return "[]";
 
         String data = "[" + String.valueOf(current.getData());

@@ -39,9 +39,4 @@ public class Usuario extends Persona {
     public void setState(boolean state) {
         this.state = state;
     }
-    
-    @Override
-    public String toString() {
-        return super.getName() + " " + super.getFirstSurName() + " " + super.getSecondSurName();
-    }
 }

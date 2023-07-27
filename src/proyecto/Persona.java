@@ -54,4 +54,9 @@ public abstract class Persona {
     public void setIdentification(long identification) {
         this.identification = identification;
     }
+    
+    @Override
+    public String toString() {
+        return this.name + " " + this.firstSurName + " " + this.secondSurName;
+    }
 }

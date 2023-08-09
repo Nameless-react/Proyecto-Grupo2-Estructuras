@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author joel
  */
-public class ListaSimpleHorarios {
+public class ListaSimpleHorario {
     OpcionMenu[] horarios = {
         new OpcionMenu(1, "8am-11am"),
         new OpcionMenu(2, "11am-2pm"),
@@ -21,7 +21,7 @@ public class ListaSimpleHorarios {
     
     private NodoLCSHorarios inicio;
 
-    public ListaSimpleHorarios() {
+    public ListaSimpleHorario() {
         this.inicio = null;
     }
     

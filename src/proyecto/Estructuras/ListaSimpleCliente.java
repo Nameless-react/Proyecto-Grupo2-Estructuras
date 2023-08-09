@@ -51,36 +51,12 @@ public class ListaSimpleCliente {
         }
     }
 
-    public void delete(long id) {
-        if (this.isEmpty()) {
-            Handler.showMessage("La lista de clientes está vacia", "Vacio", Handler.ERROR);
-            return;
-        }
-
-        if (this.pointer.getData().getIdentification() == id) {
-            this.pointer = this.pointer.getNext();
-        } else {
-            NodoLSClientes previous;
-            NodoLSClientes current;
-            previous = this.pointer;
-            current = this.pointer.getNext();
-            while (current != null && current.getData().getIdentification() != id) {
-                previous = previous.getNext();
-                current = current.getNext();
-            }
-
-            if (current != null) {
-                previous.setNext(current.getNext());
-            }
-        }
-    }
-
     public Cliente find(long id) {
         Cliente client = null;
         
         NodoLSClientes current = this.pointer;
         while (current != null) { 
-            if (current.getData().getIdentification() == id) client = current.getData();
+            if (current.getData().getIdentification() == id && current.getData().isState()) client = current.getData();
             current = current.getNext();
         }
         

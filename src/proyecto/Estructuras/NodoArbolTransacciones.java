@@ -19,6 +19,12 @@ public class NodoArbolTransacciones {
         this.left = null;
         this.right = null;
     }
+    
+    public NodoArbolTransacciones(Transaccion data) {
+        this.left = null;
+        this.right = null;
+        this.data = data;
+    }
 
     public Transaccion getData() {
         return this.data;

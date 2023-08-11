@@ -66,24 +66,26 @@ public class ListaSimpleCliente {
     public void toggleState() {
         NodoLSClientes current = this.pointer;
 
-        long id = Handler.inputLong("Digite la identificación del usuario que quiere desactviar o activar");
+        long id = Handler.inputLong("Digite la identificación del cliente que quiere desactivar o activar");
 
         //Verificar que no tenga relación con otros catálogos
         while (current.hasNext()) {
             Cliente client = current.getData();
             if (id == client.getIdentification()) {
                 client.setState(!client.isState());
-                Handler.showMessage("El clinete ha sido " + (client.isState() ? "activado" : "desactivado"), "Usuario: " + client.getIdentification(), Handler.INFORMATION);
+                Handler.showMessage("El cliente ha sido " + (client.isState() ? "activado" : "desactivado"), "Cliente: " + client.getIdentification(), Handler.INFORMATION);
+                char addMore = Handler.inputChar("Desea desactivar o activar otro cliente (s/n)");
+                if (addMore == 'n') return;
+                this.toggleState();
+                return;
             }
 
             current = current.getNext();
         }
 
-        Handler.showMessage("El usuario no existe", "Error: no encontrado", Handler.ERROR);
+        Handler.showMessage("El cliente no existe", "Error: no encontrado", Handler.ERROR);
         char addMore = Handler.inputChar("Desea desactivar o activar otro cliente (s/n)");
-        if (addMore == 'n') {
-            return;
-        }
+        if (addMore == 'n') return;
         this.toggleState();
     }
 

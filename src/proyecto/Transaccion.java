@@ -4,17 +4,23 @@
  */
 package proyecto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *
  * @author joel
  */
 public class Transaccion {
-    private LocalDate date;
+    private LocalDateTime date;
     private double price;
     private Cliente student;
+
     
+    public Transaccion(Cliente student, double price, LocalDateTime date) {
+        this.student = student;
+        this.price = price;
+        this.date = date;
+    }
     public void register() {
         
     }
@@ -37,5 +43,29 @@ public class Transaccion {
         
         
         return invoice;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Cliente getStudent() {
+        return student;
+    }
+
+    public void setStudent(Cliente student) {
+        this.student = student;
     }
 }

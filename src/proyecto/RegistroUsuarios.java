@@ -21,6 +21,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         if (type == 'e') {
             this.editData();
             jLabel1.setText("Editar Usuario");
+            jTextField6.setEditable(false);
         } 
     }
     
@@ -247,7 +248,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String name = jTextField3.getText();
+        String name = Handler.capitalize(jTextField3.getText());
         
         if (name.length() < 3) {
             Handler.showMessage("Nombre muy corto", "Nombre invalido", Handler.ERROR);
@@ -255,14 +256,14 @@ public class RegistroUsuarios extends javax.swing.JFrame {
             return;
         }
         
-        String firstSurName = jTextField4.getText();
+        String firstSurName = Handler.capitalize(jTextField4.getText());
         if (firstSurName.length() < 3) {
             Handler.showMessage("Primer apellido muy corto", "Primer apellido invalido", Handler.ERROR);
             jTextField4.setText("");
             return;
         }
         
-        String secondSurName = jTextField5.getText();
+        String secondSurName = Handler.capitalize(jTextField5.getText());
         if (secondSurName.length() < 3) {
             Handler.showMessage("Segundo apellido muy corto", "Segundo apellido invalido", Handler.ERROR);
             jTextField5.setText("");

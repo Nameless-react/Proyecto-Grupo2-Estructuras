@@ -4,6 +4,8 @@
  */
 package proyecto.Estructuras;
 
+import proyecto.Cliente;
+import proyecto.Handler;
 import proyecto.Instructor;
 
 /**
@@ -52,6 +54,35 @@ public class ListaDobleCircularInstructor {
             newNode.getNext().setPrevious(newNode);
         }
     }
+    
+    public void toggleState() {
+        NodoDCInstructor current = this.pointer;
+
+        long id = Handler.inputLong("Digite la identificación del usuario que quiere desactviar o activar");
+        if (id == current.getData().getIdentification()) {
+            Instructor instructor = current.getData();
+            instructor.setAvailability(!instructor.isAvailability());
+            Handler.showMessage("El instructor ha sido " + (instructor.isAvailability() ? "activado" : "desactivado"), "Instructor: " + instructor.getIdentification(), Handler.INFORMATION);
+            return;
+        }
+        
+        //Verificar que no tenga relación con otros catálogos
+        while (current != this.pointer) {
+            Instructor instructor = current.getData();
+            if (id == instructor.getIdentification()) {
+                instructor.setAvailability(!instructor.isAvailability());
+                Handler.showMessage("El instructor ha sido " + (instructor.isAvailability() ? "activado" : "desactivado"), "Instructor: " + instructor.getIdentification(), Handler.INFORMATION);
+            }
+
+            current = current.getNext();
+        }
+
+        Handler.showMessage("El instructor no existe", "Error: no encontrado", Handler.ERROR);
+        char addMore = Handler.inputChar("Desea desactivar o activar otro instructor(s/n)");
+        if (addMore == 'n') return;
+        this.toggleState();
+    }
+    
     
     public Instructor find(long identification) {
         

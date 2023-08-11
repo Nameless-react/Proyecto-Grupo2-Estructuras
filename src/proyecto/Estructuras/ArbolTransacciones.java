@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import proyecto.Handler;
 import proyecto.Transaccion;
 
 /**
@@ -79,5 +80,40 @@ public class ArbolTransacciones {
        return this.table;
    }
    
+   
+   public Transaccion find(int id){
+      if(this.isEmpty()) {
+          Handler.showMessage("El registro de transacciones está vacio", "Vacio", Handler.ERROR);
+          return null;    
+      }
+      
+      return this.find(this.root, id);
+   }
+   
+   public Transaccion find(NodoArbolTransacciones node, int id){
+       Transaccion current = node.getData();
+       
+       if (current.getStudent().getIdentification() == id) return current;
+       this.find(node.getRight(), id);
+       this.find(node.getLeft(), id);
+      
+       Handler.showMessage("La transacción " + id + "no existe", "No encontrada", Handler.ERROR);
+      return null;
+   }
+   
+   
+   public void payment(int id) {
+       
+       
+       
+       Handler.showMessage("Pago efectuado existosamente", "Completado", Handler.INFORMATION);
+   }
+   
+   public void cancel(int id) {
+       
+       
+       
+       Handler.showMessage("Transacción cancelada exitosamente", "Completado", Handler.INFORMATION);
+   }
    
 }

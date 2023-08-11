@@ -235,17 +235,12 @@ public class RegistroFactura extends javax.swing.JFrame {
         if (evt.getClickCount() == 2) {
             JTable target = (JTable) evt.getSource();
             int row = target.getSelectedRow();
-            Cliente client = RegistroClientes.listaSimple.find(Long.parseLong((String) target.getValueAt(row, 0)));
+            Transaccion transaction = transactions.find(Integer.parseInt((String) target.getValueAt(row, 0)));
             
             
-            Handler.showMessage("Factura:\n"
-                    + "\nIdentificación: " + target.getValueAt(row, 0)
-                    + "\nNombre: " + target.getValueAt(row, 1)
-                    + "\nMonto: " + target.getValueAt(row, 2)
-                    + "\nFecha: " + target.getValueAt(row, 3)
-                    + "\nTeléfono: " + client.getPhone()
-                    
-                    , "Factura", Handler.INFORMATION);
+            int option = Handler.options(String.valueOf(transaction), "Factura");
+            if (option == 0) transactions.payment(transaction.getId());
+            
         }
     }//GEN-LAST:event_jTable1MouseClicked
 

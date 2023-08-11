@@ -47,4 +47,10 @@ public class Handler {
     public static String capitalize(String text) {
         return (text.substring(0,1).toUpperCase() + text.substring(1, text.length())).strip();
     }
+    
+    
+    public static int options(String message, String title) {
+        Object[] options = {"Efectuar pago", "Cerrar"};  
+        return JOptionPane.showOptionDialog(null, message, title, 1, INFORMATION, null, options, options[1]);
+    }
 }

@@ -474,14 +474,13 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        new RegistroFactura().setVisible(true);
+        new RegistroTransacciones().setVisible(true);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         
-        int opcion = Handler.options("Hola", "adjf");
-        
-        System.out.println(String.valueOf(opcion));
+       int identification = Handler.inputInt("Digite el id de la transacción que quiere anular");
+       RegistroTransacciones.transactions.cancel(identification);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     /**

@@ -5,9 +5,6 @@
 package proyecto.Estructuras;
 
 import java.time.format.DateTimeFormatter;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import proyecto.Handler;
 import proyecto.Transaccion;
 
@@ -103,17 +100,59 @@ public class ArbolTransacciones {
    
    
    public void payment(int id) {
+       if(this.isEmpty()) {
+          Handler.showMessage("El registro de transacciones está vacio", "Vacio", Handler.ERROR);
+          return;
+      }
        
-       
-       
+       NodoArbolTransacciones removedNode = this.cancel(id, this.root);
+       //Falta registrar los ingresos de esa trnasacción
        Handler.showMessage("Pago efectuado existosamente", "Completado", Handler.INFORMATION);
    }
    
    public void cancel(int id) {
+       if(this.isEmpty()) {
+          Handler.showMessage("El registro de transacciones está vacio", "Vacio", Handler.ERROR);
+          return;
+      }
        
        
-       
+       this.root = this.cancel(id, this.root);
        Handler.showMessage("Transacción cancelada exitosamente", "Completado", Handler.INFORMATION);
+   }
+   
+   public NodoArbolTransacciones cancel(int id, NodoArbolTransacciones node) {
+       if (node.getData().getId() > id) {
+           node.setLeft(this.cancel(id, node.getLeft())); 
+           return node;
+       } else if (node.getData().getId() < id) {
+           node.setRight(this.cancel(id, node.getRight()));
+           return node;
+       }
+       
+       if (node.getRight() == null) return node.getLeft();
+       else if (node.getLeft() == null) return node.getRight();
+       else {
+           
+           NodoArbolTransacciones parent = node.getRight();
+           
+           NodoArbolTransacciones successor = node.getLeft();
+           
+           while (successor != null) {
+               parent = successor;
+               successor = successor.getLeft();
+           }
+           
+           if (parent != node) parent.setLeft(successor.getRight());
+           else parent.setRight(successor.getLeft());
+           
+           node.setData(successor.getData());
+           
+           
+           
+       }
+       this.size--;
+       return node;
    }
    
 }

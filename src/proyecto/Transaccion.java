@@ -12,18 +12,22 @@ import java.time.format.DateTimeFormatter;
  * @author joel
  */
 public class Transaccion {
-    private static int globalId = 1;
+    private static int globalId = 0;
     private int id;
     private LocalDateTime date;
     private double price;
     private Cliente student;
+    private String concept;
+    private String courses;
 
     
-    public Transaccion(Cliente student, double price, LocalDateTime date) {
-        this.id = globalId++;
+    public Transaccion(Cliente student, double price, LocalDateTime date, String concept, String courses) {
+        this.id = ++globalId;
         this.student = student;
         this.price = price;
         this.date = date;
+        this.concept = concept;
+        this.courses = courses;
     }
 
     public LocalDateTime getDate() {
@@ -57,16 +61,27 @@ public class Transaccion {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getConcept() {
+        return concept;
+    }
+
+    public void setConcept(String concept) {
+        this.concept = concept;
+    }
     
     @Override
     public String toString() {
-        return "Transacción\n"
+        return "Transacción Número: " + String.valueOf(this.id) + "\n"
                 + "================"
         + "\nIdentificación: " + this.student.getIdentification()
         + "\nNombre: " + String.valueOf(this.student)
-        + "\nMonto: " + String.valueOf(this.price)
         + "\nFecha: " + this.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))
-        + "\nTeléfono: " + this.student.getPhone();
+        + "\nTeléfono: " + this.student.getPhone()
+        + "\nCursos:\n" + this.courses
+        + "\nConcepto: " + this.concept
+        + "\n---------------------"
+        + "\nMonto Total: " + String.valueOf(this.price);
     }
     
     

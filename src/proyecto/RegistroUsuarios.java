@@ -14,7 +14,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         initComponents();
         this.type = type;
         setTitle("Formulario Usuarios");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
         
@@ -28,7 +28,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
     public RegistroUsuarios() {
         initComponents();
         setTitle("Formulario Usuarios");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
     }

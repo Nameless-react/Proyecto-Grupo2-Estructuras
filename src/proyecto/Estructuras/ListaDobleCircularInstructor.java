@@ -28,6 +28,13 @@ public class ListaDobleCircularInstructor {
 
     public void add(Instructor instructor) {
         NodoDCInstructor newNode = new NodoDCInstructor(instructor);
+        if (this.find(instructor.getIdentification()) != null) {
+            Handler.showMessage("La identificación ya está asignada a otro instructor", "Identficación repetida", Handler.ERROR);
+            return;
+        }
+        
+        Handler.showMessage("El instructor fue agregado exitosamente", "Éxito", Handler.INFORMATION);
+        
         if (this.isEmpty()) {
             this.pointer = newNode;
             this.last = newNode;
@@ -85,8 +92,18 @@ public class ListaDobleCircularInstructor {
     
     
     public Instructor find(long identification) {
+        NodoDCInstructor current = this.pointer;
+        if (current == null) return null;
+        
+        if (current.getData().getIdentification() == identification) return current.getData();
+        current = current.getNext();
         
         
+        while (current != this.pointer) {
+            Instructor instructor = current.getData();
+            if (identification == instructor.getIdentification()) return instructor;
+            current = current.getNext();
+        }
         
         return null;
     }

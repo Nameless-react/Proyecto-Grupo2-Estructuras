@@ -53,4 +53,8 @@ public class Handler {
         Object[] options = {"Efectuar pago", "Cerrar"};  
         return JOptionPane.showOptionDialog(null, message, title, 1, INFORMATION, null, options, options[1]);
     }
+    
+    public static int yesOrNo(String message, String title) {
+        return JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+    }
 }

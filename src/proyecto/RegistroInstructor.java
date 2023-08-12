@@ -7,7 +7,6 @@ package proyecto;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import proyecto.Estructuras.ListaDobleCircularInstructor;
-import static proyecto.RegistroClientes.listaSimple;
 
 /**
  *
@@ -21,7 +20,7 @@ public class RegistroInstructor extends javax.swing.JFrame {
     public RegistroInstructor(char type) {
         initComponents();
         setTitle("Formulario Instructores");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
         
@@ -33,7 +32,7 @@ public class RegistroInstructor extends javax.swing.JFrame {
     public RegistroInstructor() {
         initComponents();
         setTitle("Formulario Instructores");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
     }
@@ -261,6 +260,7 @@ public class RegistroInstructor extends javax.swing.JFrame {
         jTextField4.setText("");
         jTextField5.setText("");
         jTextField6.setText("");
+        jTextField7.setText("");
         jCheckBox1.setSelected(false);
     }
     

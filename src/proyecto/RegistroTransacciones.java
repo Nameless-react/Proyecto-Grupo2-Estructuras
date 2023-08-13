@@ -41,6 +41,10 @@ public class RegistroTransacciones extends javax.swing.JFrame {
             tableModel.addRow(row);
         }
         
+        for (String schedule : RegistroHorario.schedules.show().split("-")) {
+            jComboBox2.addItem(schedule);
+        }
+        
         //Logica para llenar los jCombos para que tengan los horarios y cursos disponibles.
         
     }
@@ -203,9 +207,6 @@ public class RegistroTransacciones extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -352,7 +353,7 @@ public class RegistroTransacciones extends javax.swing.JFrame {
         //formato a los cursos para agregarlos como atributo en la clase transacción
         
         
-        Transaccion transaction = transactions.add(new Transaccion(student, price, LocalDateTime.now(), concept));
+        Transaccion transaction = transactions.add(new Transaccion(student, price, LocalDateTime.now(), concept, ""));
         Object[] data = {String.valueOf(transaction.getStudent().getIdentification()),
                 String.valueOf(transaction.getStudent()),
                 transaction.getPrice(),

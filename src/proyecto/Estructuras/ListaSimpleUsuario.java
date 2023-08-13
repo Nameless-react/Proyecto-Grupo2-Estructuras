@@ -33,6 +33,11 @@ public class ListaSimpleUsuario {
         NodoLSUsuarios newNode = new NodoLSUsuarios(user);
         NodoLSUsuarios current = this.pointer;
         
+        if (this.find(user.getIdentification()) != null) {
+            Handler.showMessage("La identificación del usuario ya está asiganda", "Identificación ya existente", Handler.ERROR);
+            return;
+        }
+        
         if (this.size == 0){
             this.pointer.setData(user);
             Handler.showMessage("El usuario fue creado exitosamente", "Usuario creado", Handler.INFORMATION);   

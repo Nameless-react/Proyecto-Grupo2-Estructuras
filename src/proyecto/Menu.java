@@ -22,6 +22,7 @@ public class Menu extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         RegistroClientes.listaSimple.add(new Cliente("Joel", "García", "Rojas", 118930275, "joel", "ladjfñldkjf", true, "34563456756"));
+        RegistroHorario.schedules.readFile();
     }
 
     /**

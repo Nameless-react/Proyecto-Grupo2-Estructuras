@@ -30,6 +30,11 @@ public class Transaccion {
         this.courses = courses;
     }
 
+    public Transaccion() {
+    }
+    
+    
+
     public LocalDateTime getDate() {
         return date;
     }

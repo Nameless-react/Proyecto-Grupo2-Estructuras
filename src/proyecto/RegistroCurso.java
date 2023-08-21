@@ -4,19 +4,20 @@
  */
 package proyecto;
 
-import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
 import proyecto.Estructuras.ListaSimpleCircularHorario;
+import static proyecto.RegistroHorario.schedules;
 
 /**
  *
  * @author joel
  */
-public class RegistroHorario extends javax.swing.JFrame {
-    public static ListaSimpleCircularHorario schedules = new ListaSimpleCircularHorario();
+public class RegistroCurso extends javax.swing.JFrame {
+    public static ListaSimpleCircularHorario cursos = new ListaSimpleCircularHorario();
     /**
      * Creates new form RegistroHorario
      */
-    public RegistroHorario() {
+    public RegistroCurso() {
         initComponents();
     }
     
@@ -36,12 +37,14 @@ public class RegistroHorario extends javax.swing.JFrame {
 
         botonAtras = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txt1 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JLabel();
         txtf2 = new javax.swing.JTextField();
         txtf1 = new javax.swing.JTextField();
         botonAgregar = new javax.swing.JButton();
         botonMostrar = new javax.swing.JButton();
-        txt2 = new javax.swing.JLabel();
+        txtNombre1 = new javax.swing.JLabel();
+        cmb = new javax.swing.JComboBox<>();
+        txtNombre2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,9 +59,9 @@ public class RegistroHorario extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
-        jLabel1.setText("Registro de Horarios");
+        jLabel1.setText("Registro de Cursos");
 
-        txt1.setText("Hora de Inicio:");
+        txtNombre.setText("Codigo:");
 
         txtf2.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
 
@@ -86,37 +89,49 @@ public class RegistroHorario extends javax.swing.JFrame {
             }
         });
 
-        txt2.setText("Hora de Finalizacion:");
+        txtNombre1.setText("Horario:");
+
+        cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txtNombre2.setText("Nombre:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(botonAtras)
-                        .addGap(175, 175, 175)
-                        .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre)
+                            .addComponent(txtNombre2))
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtf2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtf1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(96, 96, 96)
+                                .addComponent(txtNombre1)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(txt1)
-                        .addGap(251, 251, 251)
-                        .addComponent(txt2)
-                        .addGap(34, 34, 34)
-                        .addComponent(txtf2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonAtras)
+                                .addGap(171, 171, 171)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(466, 466, 466)
+                                .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
+                        .addGap(164, 164, 164)
                         .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(159, 159, 159)
-                        .addComponent(botonMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(175, 175, 175)
-                    .addComponent(txtf1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(413, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
+                        .addComponent(botonMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(241, 241, 241))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,22 +142,23 @@ public class RegistroHorario extends javax.swing.JFrame {
                     .addComponent(botonAtras))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombre)
+                            .addComponent(txtf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre1)
+                            .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre2))
+                        .addContainerGap(226, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt2)
-                            .addComponent(txtf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt1))))
-                .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(150, 150, 150)
-                    .addComponent(txtf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(177, Short.MAX_VALUE)))
+                            .addComponent(botonMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(144, 144, 144))))
         );
 
         pack();
@@ -153,14 +169,14 @@ public class RegistroHorario extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        String horaInicio = Handler.capitalize(txtf1.getText());
-        String horaFin = Handler.capitalize(txtf2.getText());
-        schedules.add(new Horario(horaInicio,horaFin));
-        this.clear();
+        String code = Handler.capitalize(txtf1.getText());
+        String name = Handler.capitalize(txtf2.getText());
+        String horario = Handler.capitalize()
+        cursos.add(new Curso(code,name,horario));
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
-        JOptionPane.showMessageDialog(null, schedules);
+        
     }//GEN-LAST:event_botonMostrarActionPerformed
 
     /**
@@ -180,20 +196,21 @@ public class RegistroHorario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroHorario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroCurso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroHorario().setVisible(true);
+                new RegistroCurso().setVisible(true);
             }
         });
     }
@@ -202,9 +219,11 @@ public class RegistroHorario extends javax.swing.JFrame {
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonMostrar;
+    private javax.swing.JComboBox<String> cmb;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel txt1;
-    private javax.swing.JLabel txt2;
+    private javax.swing.JLabel txtNombre;
+    private javax.swing.JLabel txtNombre1;
+    private javax.swing.JLabel txtNombre2;
     private javax.swing.JTextField txtf1;
     private javax.swing.JTextField txtf2;
     // End of variables declaration//GEN-END:variables

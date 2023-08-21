@@ -23,36 +23,49 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtNombre" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNombre2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="txtf2" min="-2" pref="191" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="txtf1" min="-2" pref="191" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                              <Component id="txtNombre1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="botonAtras" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="botonAtras" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="466" max="-2" attributes="0"/>
+                              <Component id="cmb" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                      <Component id="txt1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
-                      <Component id="txt2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="txtf2" min="-2" pref="191" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
                       <Component id="botonAgregar" min="-2" pref="90" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
+                      <EmptySpace pref="231" max="32767" attributes="0"/>
                       <Component id="botonMostrar" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-              <EmptySpace pref="56" max="32767" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
-                  <Component id="txtf1" min="-2" pref="191" max="-2" attributes="0"/>
-                  <EmptySpace pref="413" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -67,28 +80,28 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtf1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNombre1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmb" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtf2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNombre2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="226" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="botonAgregar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="botonMostrar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txt2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtf2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txt1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <EmptySpace pref="81" max="32767" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-                  <Component id="txtf1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="177" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -115,12 +128,12 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="36" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Registro de Horarios"/>
+        <Property name="text" type="java.lang.String" value="Registro de Cursos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="txt1">
+    <Component class="javax.swing.JLabel" name="txtNombre">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Hora de Inicio:"/>
+        <Property name="text" type="java.lang.String" value="Codigo:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtf2">
@@ -181,9 +194,29 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonMostrarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="txt2">
+    <Component class="javax.swing.JLabel" name="txtNombre1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Hora de Finalizacion:"/>
+        <Property name="text" type="java.lang.String" value="Horario:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmb">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtNombre2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nombre:"/>
       </Properties>
     </Component>
   </SubComponents>

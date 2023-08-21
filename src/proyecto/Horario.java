@@ -10,29 +10,34 @@ package proyecto;
  */
 public class Horario {
 
-    private String HoraInicio;
-    private String HoraFinal;
+    private String horaInicio;
+    private String horaFinal;
 
     public Horario(String inicio, String fin) {
-        this.HoraInicio = inicio;
-        this.HoraFinal = fin;
+        this.horaInicio = inicio;
+        this.horaFinal = fin;
     }
     
     public Horario() {}
 
     public String getHoraInicio() {
-        return HoraInicio;
+        return horaInicio;
     }
 
-    public void setHoraInicio(String HoraInicio) {
-        this.HoraInicio = HoraInicio;
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
     }
 
     public String getHoraFinal() {
-        return HoraFinal;
+        return horaFinal;
     }
 
-    public void setHoraFinal(String HoraFinal) {
-        this.HoraFinal = HoraFinal;
+    public void setHoraFinal(String horaFinal) {
+        this.horaFinal = horaFinal;
+    }
+
+    @Override
+    public String toString() {
+        return this.horaInicio + "-" + this.horaFinal;
     }
 }

@@ -21,27 +21,19 @@ public class ListaSimpleCursos {
     public boolean isEmpty() {
         return this.inicio == null;
     }
-    public void add(){
-        Curso c = new Curso();
-        c.setNombre(JOptionPane.showInputDialog("Escriba el nombre del curso: "));
-        c.setCodigo(JOptionPane.showInputDialog("Digite el codigo del curso: "));
+    public void add(Curso curso){
         
-        
-        
-     
-        
-        NodoSCursos nuevo = new NodoSCursos();
-        nuevo.setData(c);
+        NodoSCursos nuevo = new NodoSCursos(curso);
         if (this.isEmpty()) {
             this.inicio=nuevo;
-        }else if(c.getNombre().compareToIgnoreCase(this.inicio.getData().getNombre())<0){
+        }else if(curso.getNombre().compareToIgnoreCase(this.inicio.getData().getNombre())<0){
             nuevo.setNext(this.inicio);
             this.inicio=nuevo;
         }else if(this.inicio.getNext()==null){
             this.inicio.setNext(nuevo);
         }else{
             NodoSCursos aux = this.inicio;
-            while((aux.getNext() != null)&&(aux.getNext().getData().getNombre().compareToIgnoreCase(c.getNombre())<0)){
+            while((aux.getNext() != null)&&(aux.getNext().getData().getNombre().compareToIgnoreCase(curso.getNombre())<0)){
                 aux = aux.getNext();
             }
             nuevo.setNext(aux.getNext());

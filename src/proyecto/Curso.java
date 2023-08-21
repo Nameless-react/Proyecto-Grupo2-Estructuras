@@ -13,10 +13,14 @@ public class Curso {
     private String nombre;
     private String horario;
 
+    public Curso(String codigo, String nombre, String horario) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.horario = horario;
+    }
+    
     public Curso() {
-        this.codigo = "";
-        this.nombre = "";
-        this.horario = "";
+        
     }
 
     public String getCodigo() {

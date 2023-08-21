@@ -21,7 +21,7 @@ public class ListaSimpleCircularHorario {
 
     private NodoSCHorarios inicio;
     private NodoSCHorarios fin;
-
+    private int size = 4;
     private static String rutaArchivo = "horarios.txt";
 
     public ListaSimpleCircularHorario() {
@@ -38,7 +38,7 @@ public class ListaSimpleCircularHorario {
         horario.setHoraInicio(JOptionPane.showInputDialog("Escriba la hora de inicio: "));
         horario.setHoraFinal(JOptionPane.showInputDialog("Escriba la hora de finalizacion: "));
         NodoSCHorarios nuevo = new NodoSCHorarios();
-
+        this.size++;
         nuevo.setData(horario);
         if (this.isEmpty()) {
             this.inicio = nuevo;
@@ -66,7 +66,7 @@ public class ListaSimpleCircularHorario {
 
     public void add(Horario horario) {
         NodoSCHorarios nuevo = new NodoSCHorarios(horario);
-
+        this.size++;
         if (this.isEmpty()) {
             this.inicio = nuevo;
             this.fin = nuevo;
@@ -201,5 +201,19 @@ public class ListaSimpleCircularHorario {
                 }
             }
         }
+    }
+    
+    public Horario[] fillComboBox() { 
+        Horario[] elementsComboBox = new Horario[this.size];
+        int counter = 1;
+        NodoSCHorarios current = this.inicio;
+        elementsComboBox[0] = current.getData();
+        current = current.getNext();
+        while (current != this.inicio) {
+            elementsComboBox[counter] = current.getData();
+            counter++;
+            current = current.getNext();
+        }
+        return elementsComboBox;
     }
 }

@@ -132,8 +132,18 @@ public class RegistroTransacciones extends javax.swing.JFrame {
         jLabel1.setText("Transacciones");
 
         jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Identificación");
 
@@ -400,6 +410,14 @@ public class RegistroTransacciones extends javax.swing.JFrame {
             if (option == 0) this.tableModel2.removeRow(row);   
         }
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments

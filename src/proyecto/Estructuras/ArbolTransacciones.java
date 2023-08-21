@@ -4,8 +4,12 @@
  */
 package proyecto.Estructuras;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+import proyecto.Cajas;
 import proyecto.Handler;
+import proyecto.RegistroCajas;
 import proyecto.Transaccion;
 
 /**
@@ -155,4 +159,37 @@ public class ArbolTransacciones {
        return node;
    }
    
+   
+   
+   public double inOrden(LocalDateTime fecha){
+        double money = 0;
+        if(!isEmpty()){
+            if(root.getData().getDate().isEqual(fecha) ){
+                money += root.getData().getPrice();
+            }
+            inOrdenR(root, fecha, money);
+            
+            return money;
+        }else{
+            JOptionPane.showMessageDialog(null,"No hubieron ingresos!");
+            return money;
+        }
+        
+    }
+    
+    public void inOrdenR(NodoArbolTransacciones root, LocalDateTime fecha, double money){
+        if(root!=null){
+            if(root.getLeft().getData().getDate().isEqual(fecha)){
+                money+= root.getLeft().getData().getPrice();
+                inOrdenR(root.getLeft(), fecha, money);
+            }
+           
+            if(root.getRight().getData().getDate().isEqual(fecha)){
+                money+= root.getRight().getData().getPrice();
+                inOrdenR(root.getRight(), fecha, money);
+            }
+            
+        }
+    }
+    
 }

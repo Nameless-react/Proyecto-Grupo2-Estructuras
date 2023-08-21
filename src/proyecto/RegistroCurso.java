@@ -24,6 +24,7 @@ public class RegistroCurso extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         for (Horario schedule : RegistroHorario.schedules.fillComboBox()) {
+            if (schedule == null) continue;
             cmb.addItem(schedule.toString());
         }
         

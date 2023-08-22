@@ -29,6 +29,11 @@ public class ListaSimpleCursos {
         this.size++;
         NodoSCursos nuevo = new NodoSCursos(curso);
         Handler.showMessage("El curso fue agregado exitosamente", "Existo", Handler.INFORMATION);
+        if (this.find(curso.getCodigo()) != null) {
+            Handler.showMessage("El curso con el código " + curso.getCodigo() + " ya existe", "Error al guardar el curso", Handler.ERROR);
+            return;
+        }
+        
         
         if (this.isEmpty()) {
             this.inicio=nuevo;
@@ -94,9 +99,11 @@ public class ListaSimpleCursos {
         int counter = 0;
         
         while (current != null) {
-            cursos[counter] = current.getData();
-            current = current.getNext();
+            if (current.getData().isActivo()) {
+                cursos[counter] = current.getData();
+            }
             counter++;
+            current = current.getNext();
         }
         
         return cursos;
@@ -123,5 +130,20 @@ public class ListaSimpleCursos {
             if (current.getData().getInstructor().getIdentification() == id) return true;
         }
         return false;
+    }
+    
+    public void toggleState(String codigo) {
+        NodoSCursos current = this.inicio;
+        
+        while (current != null) {
+            if (codigo.equals(current.getData().getCodigo())) {
+                current.getData().setActivo(!current.getData().isActivo());
+                Handler.showMessage("El curso ha sido " + (current.getData().isActivo() ? "activado" : "desactivado"), "Curso: " + current.getData().getCodigo(), Handler.INFORMATION);
+                return;
+            }
+            current = current.getNext();
+        }
+        
+        Handler.showMessage("No se pudo cambiar desactivar/activar", "Error al cambiar estado", Handler.ERROR);
     }
 }

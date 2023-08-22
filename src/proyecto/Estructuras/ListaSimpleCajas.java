@@ -3,13 +3,14 @@ package proyecto.Estructuras;
 
 import java.time.LocalDateTime;
 import proyecto.Cajas;
+import proyecto.Cliente;
 import proyecto.RegistroTransacciones;
-import proyecto.Transaccion;
 
 public class ListaSimpleCajas {
     
     private NodoLSCajas cabeza;
     private NodoLSCajas fin;
+    private Cliente[] clientes = new Cliente[1];
     
     public ListaSimpleCajas(){
         this.cabeza = null;
@@ -21,11 +22,11 @@ public class ListaSimpleCajas {
         return this.cabeza == null;
     }
     
-    public void push(LocalDateTime date){
+    public void push(LocalDateTime date, double money){
         Cajas cajas = new Cajas();
         NodoLSCajas aux = new NodoLSCajas();
         
-        cajas.setIngresos(RegistroTransacciones.transactions.earnings(date));
+        cajas.setIngresos(money);
         cajas.setFecha(date);
         
         aux.setData(cajas);
@@ -52,5 +53,29 @@ public class ListaSimpleCajas {
             aux2.setNext(aux);
         }
         
+    }
+    
+    public void addClient(Cliente client) {
+        if (this.clientes[0] == null) {
+            this.clientes[0] = client;
+            return;
+        }
+        
+        Cliente[] tempClientes = new Cliente[this.clientes.length + 1];
+        System.arraycopy(this.clientes, 0, tempClientes, 0, this.clientes.length);
+        tempClientes[tempClientes.length - 1] = client;
+        this.clientes = tempClientes;
+    }
+    
+    public String showClient() {
+        String data = "";
+        
+        for (Cliente client : this.clientes) {
+            if (client == null) continue;
+            
+            data += client.toString() + "\n";
+        }
+        
+        return data;
     }
 }

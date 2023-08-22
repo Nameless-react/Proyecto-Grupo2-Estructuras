@@ -494,7 +494,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
+        String codigo = Handler.inputString("Digite el código del curso que desea activar/desactivar");
+        RegistroCurso.cursos.toggleState(codigo);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed

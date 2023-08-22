@@ -192,7 +192,7 @@ public class RegistroCurso extends javax.swing.JFrame {
             return;
         }
         
-        cursos.add(new Curso(code,name, String.valueOf(cmb.getSelectedItem()), instructor));
+        cursos.add(new Curso(code,name, String.valueOf(cmb.getSelectedItem()), instructor, true));
         this.clear();
     }//GEN-LAST:event_botonAgregarActionPerformed
 

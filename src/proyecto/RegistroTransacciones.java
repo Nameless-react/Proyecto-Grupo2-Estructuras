@@ -44,6 +44,7 @@ public class RegistroTransacciones extends javax.swing.JFrame {
         }
 
         for (Curso curso : RegistroCurso.cursos.fillComboBox()) {
+            if (curso == null) continue;
             jComboBox1.addItem(curso.toString());
         }
 
@@ -353,7 +354,7 @@ public class RegistroTransacciones extends javax.swing.JFrame {
             
         }
         tableModel2.setNumRows(0);
-        
+        RegistroCajas.cajas.addClient(student);
         
         this.clear();
     }//GEN-LAST:event_jButton1ActionPerformed

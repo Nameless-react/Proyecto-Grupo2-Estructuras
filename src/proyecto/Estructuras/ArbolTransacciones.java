@@ -4,6 +4,7 @@
  */
 package proyecto.Estructuras;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
@@ -20,7 +21,8 @@ public class ArbolTransacciones {
     private NodoArbolTransacciones root;
     private Object[][] table = new Object[0][3]; 
     private int size = 0;
-   
+    private double money = 0;
+    
    public boolean isEmpty(){
       return this.root == null;
    }
@@ -110,7 +112,7 @@ public class ArbolTransacciones {
       }
        
        NodoArbolTransacciones removedNode = this.cancel(id, this.root);
-       //Falta registrar los ingresos de esa trnasacción
+       
        Handler.showMessage("Pago efectuado existosamente", "Completado", Handler.INFORMATION);
    }
    
@@ -159,37 +161,22 @@ public class ArbolTransacciones {
        return node;
    }
    
-   
-   
-   public double earnings(LocalDateTime fecha){
-        double money = 0;
-        if(!isEmpty()){
-            if(root.getData().getDate().isEqual(fecha) ){
-                money += root.getData().getPrice();
-            }
-            earnings(root, fecha, money);
-            
-            return money;
-        }else{
-            JOptionPane.showMessageDialog(null,"No hubieron ingresos!");
-            return money;
+   public double earnings(LocalDate fecha){
+        if(isEmpty()){
+            Handler.showMessage("No se han procesado ninguna transacción", "No hay transacciones", Handler.ERROR);
+            return 0;
         }
         
+        this.earnings(root, fecha);
+        return this.money;
     }
     
-    public void earnings(NodoArbolTransacciones root, LocalDateTime fecha, double money){
-        if(root!=null){
-            if(root.getLeft().getData().getDate().isEqual(fecha)){
-                money+= root.getLeft().getData().getPrice();
-                earnings(root.getLeft(), fecha, money);
-            }
-           
-            if(root.getRight().getData().getDate().isEqual(fecha)){
-                money+= root.getRight().getData().getPrice();
-                earnings(root.getRight(), fecha, money);
-            }
-            
-        }
+    public void earnings(NodoArbolTransacciones root, LocalDate fecha){
+        if (root == null) return;
+        
+        this.earnings(root.getLeft(), fecha);
+        if(root.getData().getDate().toLocalDate().isEqual(fecha)) this.money += root.getData().getPrice();
+        this.earnings(root.getRight(), fecha);
     }
     
 }

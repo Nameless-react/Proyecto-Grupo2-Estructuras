@@ -13,12 +13,14 @@ public class Curso {
     private String nombre;
     private String horario;
     private Instructor instructor;
+    private boolean activo;
 
-    public Curso(String codigo, String nombre, String horario, Instructor instructor) {
+    public Curso(String codigo, String nombre, String horario, Instructor instructor, boolean activo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.horario = horario;
         this.instructor = instructor;
+        this.activo = activo;
     }
     
     public Curso() {
@@ -57,6 +59,13 @@ public class Curso {
         this.instructor = instructor;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
     
     @Override
     public String toString() {

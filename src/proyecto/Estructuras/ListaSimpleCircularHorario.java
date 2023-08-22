@@ -213,10 +213,10 @@ public class ListaSimpleCircularHorario {
         while (current != this.inicio) {
             if (current.getData().isActivo()) {
                 elementsComboBox[counter] = current.getData();
-                counter++;
-                current = current.getNext();
                 
             }
+            counter++;
+            current = current.getNext();
         }
         return elementsComboBox;
     }

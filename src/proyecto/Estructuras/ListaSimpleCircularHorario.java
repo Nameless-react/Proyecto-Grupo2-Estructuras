@@ -172,9 +172,10 @@ public class ListaSimpleCircularHorario {
 
             String[] splitContent = fileContent.split("-");
             for (String schedule : splitContent) {
+                if (schedule.length() < 2) continue;
                 try {
                     String[] scheduleSplit = schedule.split("/");
-                    this.add(new Horario(scheduleSplit[0], scheduleSplit[1]));
+                    this.add(new Horario(scheduleSplit[0], scheduleSplit[1], true));
                 } catch (IndexOutOfBoundsException e) {
                     Handler.showMessage("Error en la conversión de datos", "Error", Handler.ERROR);
                 }
@@ -191,10 +192,10 @@ public class ListaSimpleCircularHorario {
                             + "-17:00/18:00");
                     writer.close();
                     
-                    this.add(new Horario("8:00", "9:00"));
-                    this.add(new Horario("11:00", "12:00"));
-                    this.add(new Horario("14:00", "15:00"));
-                    this.add(new Horario("17:00", "18:00"));
+                    this.add(new Horario("8:00", "9:00", true));
+                    this.add(new Horario("11:00", "12:00", true));
+                    this.add(new Horario("14:00", "15:00", true));
+                    this.add(new Horario("17:00", "18:00", true));
                     
                 } catch (IOException ex1) {
                     Handler.showMessage("No se pudo leer el archivo", "Error al leer", Handler.ERROR);
@@ -210,10 +211,34 @@ public class ListaSimpleCircularHorario {
         elementsComboBox[0] = current.getData();
         current = current.getNext();
         while (current != this.inicio) {
-            elementsComboBox[counter] = current.getData();
-            counter++;
-            current = current.getNext();
+            if (current.getData().isActivo()) {
+                elementsComboBox[counter] = current.getData();
+                counter++;
+                current = current.getNext();
+                
+            }
         }
         return elementsComboBox;
+    }
+    
+    public void toggleStateSchedule(String fechaInicio, String fechaFin) {
+        NodoSCHorarios current = this.inicio;
+        if (fechaInicio.equals(current.getData().getHoraInicio()) && fechaFin.equals(current.getData().getHoraFinal())) {
+                 current.getData().setActivo(!current.getData().isActivo());
+                Handler.showMessage("El horario ha sido " + (current.getData().isActivo() ? "activado" : "desactivado"), "Horario: " + fechaInicio + "-" + fechaFin, Handler.INFORMATION);
+                return;
+            }
+        
+        current = current.getNext();
+        while (current != this.inicio) {
+            if (fechaInicio.equals(current.getData().getHoraInicio()) && fechaFin.equals(current.getData().getHoraFinal())) {
+                 current.getData().setActivo(!current.getData().isActivo());
+                Handler.showMessage("El horario ha sido " + (current.getData().isActivo() ? "activado" : "desactivado"), "Horario: " + fechaInicio + "-" + fechaFin, Handler.INFORMATION);
+                return;
+            }
+            current = current.getNext();
+        }
+        
+        Handler.showMessage("No se pudo desactivar/activar el horario selecionado", "No se pudo completar la acción", Handler.ERROR);
     }
 }

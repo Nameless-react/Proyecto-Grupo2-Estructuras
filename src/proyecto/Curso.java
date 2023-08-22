@@ -12,11 +12,13 @@ public class Curso {
     private String codigo;
     private String nombre;
     private String horario;
+    private Instructor instructor;
 
-    public Curso(String codigo, String nombre, String horario) {
+    public Curso(String codigo, String nombre, String horario, Instructor instructor) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.horario = horario;
+        this.instructor = instructor;
     }
     
     public Curso() {
@@ -46,5 +48,20 @@ public class Curso {
     public void setHorario(String horario) {
         this.horario = horario;
     }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
+    
+    @Override
+    public String toString() {
+        return this.codigo + " " + this.nombre + " " + this.horario;
+    }
+    
     
 }

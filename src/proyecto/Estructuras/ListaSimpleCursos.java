@@ -6,6 +6,8 @@ package proyecto.Estructuras;
 
 import javax.swing.JOptionPane;
 import proyecto.Curso;
+import proyecto.Handler;
+import proyecto.RegistroInstructor;
 
 /**
  *
@@ -13,17 +15,21 @@ import proyecto.Curso;
  */
 public class ListaSimpleCursos {
     private NodoSCursos inicio;
+    private int size;
 
     public ListaSimpleCursos() {
         this.inicio = null;
+        this.size = 0;
     }
     
     public boolean isEmpty() {
         return this.inicio == null;
     }
     public void add(Curso curso){
-        
+        this.size++;
         NodoSCursos nuevo = new NodoSCursos(curso);
+        Handler.showMessage("El curso fue agregado exitosamente", "Existo", Handler.INFORMATION);
+        
         if (this.isEmpty()) {
             this.inicio=nuevo;
         }else if(curso.getNombre().compareToIgnoreCase(this.inicio.getData().getNombre())<0){
@@ -44,15 +50,17 @@ public class ListaSimpleCursos {
     
     public void remove(){
         if (!this.isEmpty()) {
-            String nombre=JOptionPane.showInputDialog("Escriba el Nombre del Data que se quiere Eliminar: ");
-            if (this.inicio.getData().getNombre().equals(nombre)) {
+            String codigo = JOptionPane.showInputDialog("Escriba el código del curso que se quiere eliminar: ");
+            
+            if (this.inicio.getData().getCodigo().equals(codigo)) {
+                
                 this.inicio=this.inicio.getNext();
             }else{
                 NodoSCursos anterior;
                 NodoSCursos auxiliar;
                 anterior=this.inicio;
                 auxiliar=this.inicio.getNext();
-                while((auxiliar!=null)&&(!auxiliar.getData().getNombre().equals(nombre))){
+                while((auxiliar!=null)&&(!auxiliar.getData().getNombre().equals(codigo))){
                     anterior=anterior.getNext();
                     auxiliar=auxiliar.getNext();
                 }
@@ -78,5 +86,42 @@ public class ListaSimpleCursos {
         }else{
             JOptionPane.showMessageDialog(null, "¡NO SE PUEDE MOSTRAR, LISTA VACIA!");
         }
+    }
+    
+    public Curso[] fillComboBox() {
+        Curso[] cursos = new Curso[this.size];
+        NodoSCursos current = this.inicio;
+        int counter = 0;
+        
+        while (current != null) {
+            cursos[counter] = current.getData();
+            current = current.getNext();
+            counter++;
+        }
+        
+        return cursos;
+    }
+    
+    
+    public Curso find(String code) {
+        Curso course = null;
+        NodoSCursos current = this.inicio;
+        
+        while (current != null) {
+            if (current.getData().getCodigo().equals(code)) return current.getData();
+            current = current.getNext();
+            
+        }
+        
+        return course;
+    }
+    
+    public boolean existInstructorInCourse(long id) {
+        NodoSCursos current = this.inicio;
+        
+        while (current != null) {
+            if (current.getData().getInstructor().getIdentification() == id) return true;
+        }
+        return false;
     }
 }

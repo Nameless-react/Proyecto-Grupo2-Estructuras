@@ -161,13 +161,13 @@ public class ArbolTransacciones {
    
    
    
-   public double inOrden(LocalDateTime fecha){
+   public double earnings(LocalDateTime fecha){
         double money = 0;
         if(!isEmpty()){
             if(root.getData().getDate().isEqual(fecha) ){
                 money += root.getData().getPrice();
             }
-            inOrdenR(root, fecha, money);
+            earnings(root, fecha, money);
             
             return money;
         }else{
@@ -177,16 +177,16 @@ public class ArbolTransacciones {
         
     }
     
-    public void inOrdenR(NodoArbolTransacciones root, LocalDateTime fecha, double money){
+    public void earnings(NodoArbolTransacciones root, LocalDateTime fecha, double money){
         if(root!=null){
             if(root.getLeft().getData().getDate().isEqual(fecha)){
                 money+= root.getLeft().getData().getPrice();
-                inOrdenR(root.getLeft(), fecha, money);
+                earnings(root.getLeft(), fecha, money);
             }
            
             if(root.getRight().getData().getDate().isEqual(fecha)){
                 money+= root.getRight().getData().getPrice();
-                inOrdenR(root.getRight(), fecha, money);
+                earnings(root.getRight(), fecha, money);
             }
             
         }

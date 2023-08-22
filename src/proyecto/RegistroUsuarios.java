@@ -121,6 +121,11 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         jLabel6.setText("Segundo Apellido:");
 
         jTextField6.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Identificación:");
 
@@ -310,6 +315,10 @@ public class RegistroUsuarios extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

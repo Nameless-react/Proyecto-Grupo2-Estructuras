@@ -26,6 +26,7 @@ public class RegistroInstructor extends javax.swing.JFrame {
         
         if (type == 'e') {
             this.checkData();
+            jTextField6.setEditable(false);
         }
     }
     
@@ -95,6 +96,11 @@ public class RegistroInstructor extends javax.swing.JFrame {
         jLabel7.setText("Identificación:");
 
         jTextField6.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
 
@@ -363,6 +369,10 @@ public class RegistroInstructor extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JOptionPane.showMessageDialog(null, instructors);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param args the command line arguments

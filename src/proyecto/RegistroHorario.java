@@ -161,8 +161,7 @@ public class RegistroHorario extends javax.swing.JFrame {
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
         String horaInicio = txtf1.getText();
         String horaFin = txtf2.getText();
-        System.out.println(horaFin);
-        schedules.add(new Horario(horaInicio,horaFin));
+        schedules.add(new Horario(horaInicio,horaFin, true));
         this.clear();
     }//GEN-LAST:event_botonAgregarActionPerformed
 

@@ -12,10 +12,12 @@ public class Horario {
 
     private String horaInicio;
     private String horaFinal;
+    private boolean activo;
 
-    public Horario(String inicio, String fin) {
+    public Horario(String inicio, String fin, boolean activo) {
         this.horaInicio = inicio;
         this.horaFinal = fin;
+        this.activo = activo;
     }
     
     public Horario() {}
@@ -36,6 +38,14 @@ public class Horario {
         this.horaFinal = horaFinal;
     }
 
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
     @Override
     public String toString() {
         return this.horaInicio + "-" + this.horaFinal;

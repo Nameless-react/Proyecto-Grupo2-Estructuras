@@ -33,6 +33,7 @@ public class RegistroCurso extends javax.swing.JFrame {
     public void clear() {
         txtf1.setText("");
         txtf2.setText("");
+        txtf3.setText("");
     }
 
     /**
@@ -54,6 +55,8 @@ public class RegistroCurso extends javax.swing.JFrame {
         txtNombre1 = new javax.swing.JLabel();
         cmb = new javax.swing.JComboBox<>();
         txtNombre2 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtf3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +111,10 @@ public class RegistroCurso extends javax.swing.JFrame {
 
         txtNombre2.setText("Nombre:");
 
+        jLabel2.setText("Identificación Instructor:");
+
+        txtf3.setBorder(javax.swing.BorderFactory.createEmptyBorder(7, 7, 7, 7));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,22 +128,26 @@ public class RegistroCurso extends javax.swing.JFrame {
                             .addComponent(txtNombre2))
                         .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtf2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtf1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(193, 193, 193)
                                 .addComponent(botonMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtf1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(103, 103, 103)
-                                .addComponent(txtNombre1)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtf2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtNombre1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmb, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtf3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(botonAtras)
                         .addGap(101, 101, 101)
                         .addComponent(jLabel1)))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +165,9 @@ public class RegistroCurso extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre2))
+                    .addComponent(txtNombre2)
+                    .addComponent(jLabel2)
+                    .addComponent(txtf3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,9 +183,16 @@ public class RegistroCurso extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-            String code = txtf1.getText().toUpperCase();
+        String code = txtf1.getText().toUpperCase();
         String name = Handler.capitalize(txtf2.getText());
-        cursos.add(new Curso(code,name, String.valueOf(cmb.getSelectedItem())));
+        Instructor instructor = RegistroInstructor.instructors.find(Long.parseLong(txtf3.getText()));
+        if (instructor == null) {
+            Handler.showMessage("La identificación no pertenece a ningún instructor en la base de datos", "Error en la identificación del instructor", Handler.ERROR);
+            txtf3.setText("");
+            return;
+        }
+        
+        cursos.add(new Curso(code,name, String.valueOf(cmb.getSelectedItem()), instructor));
         this.clear();
     }//GEN-LAST:event_botonAgregarActionPerformed
 
@@ -226,10 +246,12 @@ public class RegistroCurso extends javax.swing.JFrame {
     private javax.swing.JButton botonMostrar;
     private javax.swing.JComboBox<String> cmb;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel txtNombre;
     private javax.swing.JLabel txtNombre1;
     private javax.swing.JLabel txtNombre2;
     private javax.swing.JTextField txtf1;
     private javax.swing.JTextField txtf2;
+    private javax.swing.JTextField txtf3;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,22 +4,24 @@
  */
 package proyecto;
 
-
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import proyecto.Estructuras.ArbolTransacciones;
+
 /**
  *
  * @author joel
  */
 public class RegistroTransacciones extends javax.swing.JFrame {
+
     public static ArbolTransacciones transactions = new ArbolTransacciones();
     public DefaultTableModel tableModel;
     public DefaultTableModel tableModel2;
+    public static Curso[] cursosMatriculados = new Curso[10];
+
     /**
      * Creates new form RegistroFactura
      */
@@ -34,19 +36,20 @@ public class RegistroTransacciones extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.tableModel = (DefaultTableModel) jTable1.getModel();
         this.tableModel2 = (DefaultTableModel) jTable2.getModel();
-        
+
         tableModel.setRowCount(0);
-        
+
         for (Object[] row : transactions.fillTable()) {
             tableModel.addRow(row);
         }
-        
-        for (String schedule : RegistroHorario.schedules.show().split("-")) {
-            jComboBox2.addItem(schedule);
+
+        for (Curso curso : RegistroCurso.cursos.fillComboBox()) {
+            jComboBox1.addItem(curso.toString());
         }
-        
-        //Logica para llenar los jCombos para que tengan los horarios y cursos disponibles.
-        
+
+        jTextField1.setEditable(false);
+        jTextField1.setText("0");
+
     }
 
     /**
@@ -74,9 +77,7 @@ public class RegistroTransacciones extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -217,15 +218,13 @@ public class RegistroTransacciones extends javax.swing.JFrame {
             }
         });
 
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                jComboBox1ActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Curso:");
-
-        jLabel7.setText("Horario");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,14 +255,9 @@ public class RegistroTransacciones extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(87, 87, 87)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(61, 61, 61)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(50, 50, 50)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1325, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -279,24 +273,18 @@ public class RegistroTransacciones extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jLabel1))
                 .addGap(81, 81, 81)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton4))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(57, 57, 57)))
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -316,60 +304,55 @@ public class RegistroTransacciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public void clear() {
-        jTextField1.setText("");
+        jTextField1.setText("0");
         jTextField2.setText("");
+        jTextArea1.setText("");
+
     }
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         long identification;
         if (jTextField2.getText().length() < 8) {
             Handler.showMessage("Identificación no valida", "Indentificación no valida", Handler.ERROR);
-           jTextField2.setText("");
-           return;
-       }
-       try {
-           identification = Long.parseLong(jTextField2.getText());
-       } catch (NumberFormatException nfe) {
+            jTextField2.setText("");
+            return;
+        }
+        try {
+            identification = Long.parseLong(jTextField2.getText());
+        } catch (NumberFormatException nfe) {
             Handler.showMessage("Identificación no es un número valido", "No es un número", Handler.ERROR);
-           jTextField2.setText("");
-           return;
-       }
-        
-        
-       double price;
-       if (jTextField1.getText().length() < 1) {
-            Handler.showMessage("Precio no valido", "Precio no valido", Handler.ERROR);
-           jTextField1.setText("");
-           return;
-       }
-       
-       try  {
-           price = Double.parseDouble(jTextField1.getText());
-       } catch (NumberFormatException nfe) {
-           Handler.showMessage("Precio no es un número valido", "No es un número", Handler.ERROR);
-           jTextField1.setText("");
-           return;
-       }
-        
+            jTextField2.setText("");
+            return;
+        }
+
         Cliente student = RegistroClientes.listaSimple.find(identification);
         if (student == null) {
             Handler.showMessage("El estudiante ingresado no existe", "Estudiante no existe", Handler.ERROR);
             this.clear();
             return;
         }
-        
+
+        double price = Double.parseDouble(jTextField1.getText());
         String concept = jTextArea1.getText();
-        
-        //formato a los cursos para agregarlos como atributo en la clase transacción
-        
-        
-        Transaccion transaction = transactions.add(new Transaccion(student, price, LocalDateTime.now(), concept, ""));
+
+        String courses = "";
+        for (Curso curso : cursosMatriculados) {
+            if (curso == null) continue;
+            courses += curso.toString();
+        }
+
+        Transaccion transaction = transactions.add(new Transaccion(student, price, LocalDateTime.now(), concept, courses));
         Object[] data = {String.valueOf(transaction.getStudent().getIdentification()),
-                String.valueOf(transaction.getStudent()),
-                transaction.getPrice(),
-                transaction.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))};
+            String.valueOf(transaction.getStudent()),
+            transaction.getPrice(),
+            transaction.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))};
         tableModel.addRow(data);
-        
+        for (int i = 0; i < this.tableModel2.getRowCount(); i++) {
+            String comboBox = String.valueOf(this.tableModel2.getValueAt(i, 0)) + " " + String.valueOf(this.tableModel2.getValueAt(i, 1));
+            jComboBox1.addItem(comboBox);
+            
+        }
+        tableModel2.setNumRows(0);
         
         
         this.clear();
@@ -380,34 +363,51 @@ public class RegistroTransacciones extends javax.swing.JFrame {
             JTable target = (JTable) evt.getSource();
             int row = target.getSelectedRow();
             Transaccion transaction = transactions.find(Integer.parseInt((String) target.getValueAt(row, 0)));
-            
-            
+
             int option = Handler.options(String.valueOf(transaction), "Factura");
-            if (option == 0) transactions.payment(transaction.getId());
-            
+            if (option == 0) {
+                transactions.payment(transaction.getId());
+            }
+
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String schedule = String.valueOf(jComboBox2.getSelectedItem());
-        String course = String.valueOf(jComboBox1.getSelectedItem());
-        //logica para conseguir el intructor que da ese curso en ese horario
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
+        String[] course = String.valueOf(jComboBox1.getSelectedItem()).split(" ");
+        Curso curso = RegistroCurso.cursos.find(course[0]);
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+        String[] data = {course[0] + " " + course[1], course[2], curso.getInstructor().toString()};
+        tableModel2.addRow(data);
+        jComboBox1.removeItem(jComboBox1.getSelectedItem());
+        jTextField1.setText(String.valueOf(Long.parseLong(jTextField1.getText()) + 100000));
+        for (int i = 0; i < cursosMatriculados.length; i++) {
+            if (cursosMatriculados[i] == null) {
+                cursosMatriculados[i] = curso;
+                return;
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         if (evt.getClickCount() == 2) {
             JTable target = (JTable) evt.getSource();
             int row = target.getSelectedRow();
-            
-            
-            
+
             int option = Handler.yesOrNo("Está seguro de eliminar este curso", "Elliminar");
-            if (option == 0) this.tableModel2.removeRow(row);   
+            if (option == 0) {
+                String data = String.valueOf(this.tableModel2.getValueAt(row, 0)) + " " + String.valueOf(this.tableModel2.getValueAt(row, 1));
+                jTextField1.setText(String.valueOf(Long.parseLong(jTextField1.getText()) - 100000));
+                jComboBox1.addItem(data);
+                this.tableModel2.removeRow(row);
+                String codigo = String.valueOf(this.tableModel2.getValueAt(row, 0)).split(" ")[0];
+                
+                for (int i = 0; i < cursosMatriculados.length; i++) {
+                    if (cursosMatriculados[i].getCodigo().equals(codigo)) {
+                        cursosMatriculados[i] = null;
+                        return;
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -418,6 +418,10 @@ public class RegistroTransacciones extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -460,13 +464,11 @@ public class RegistroTransacciones extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

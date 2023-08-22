@@ -3,6 +3,7 @@ package proyecto.Estructuras;
 
 import java.time.LocalDateTime;
 import proyecto.Cajas;
+import proyecto.RegistroTransacciones;
 import proyecto.Transaccion;
 
 public class ListaSimpleCajas {
@@ -22,11 +23,9 @@ public class ListaSimpleCajas {
     
     public void push(LocalDateTime date){
         Cajas cajas = new Cajas();
-        Transaccion transaccion  = new Transaccion();
-        ArbolTransacciones at = new ArbolTransacciones();
         NodoLSCajas aux = new NodoLSCajas();
         
-        cajas.setIngresos(at.inOrden(date));
+        cajas.setIngresos(RegistroTransacciones.transactions.earnings(date));
         cajas.setFecha(date);
         
         aux.setData(cajas);

@@ -7,6 +7,7 @@ package proyecto.Estructuras;
 import proyecto.Cliente;
 import proyecto.Handler;
 import proyecto.Instructor;
+import proyecto.RegistroCurso;
 
 /**
  *
@@ -66,6 +67,12 @@ public class ListaDobleCircularInstructor {
         NodoDCInstructor current = this.pointer;
 
         long id = Handler.inputLong("Digite la identificación del usuario que quiere desactviar o activar");
+        if (RegistroCurso.cursos.existInstructorInCourse(id)) {
+            Handler.showMessage("No se puede desactivar el instructor ya que está a cargo de un curso", "Erorr al desactivar instructor", Handler.ERROR);
+            return;
+        }
+        
+        
         if (id == current.getData().getIdentification()) {
             Instructor instructor = current.getData();
             instructor.setAvailability(!instructor.isAvailability());
@@ -73,7 +80,7 @@ public class ListaDobleCircularInstructor {
             return;
         }
         
-        //Verificar que no tenga relación con otros catálogos
+        
         while (current != this.pointer) {
             Instructor instructor = current.getData();
             if (id == instructor.getIdentification()) {
@@ -101,7 +108,7 @@ public class ListaDobleCircularInstructor {
         
         while (current != this.pointer) {
             Instructor instructor = current.getData();
-            if (identification == instructor.getIdentification()) return instructor;
+            if (identification == instructor.getIdentification() && instructor.isAvailability()) return instructor;
             current = current.getNext();
         }
         
